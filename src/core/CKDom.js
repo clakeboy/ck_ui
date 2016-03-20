@@ -180,10 +180,15 @@ CKDom.prototype.getClass = function() {
 
 /**
  * 得到DOM集合的XY坐标
- * @returns {*}
+ * @returns {Array}
  */
 CKDom.prototype.xy = function() {
+    var rect = [];
     var parent = arguments[1] || null;
-    return CK.util.getElementXY(this,parent);
+    this.each(function(){
+        rect.push(CK.util.getElementXY(this,parent));
+    });
+    return rect.length > 1 ? rect : rect[0];
 };
+
 
