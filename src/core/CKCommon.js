@@ -2,7 +2,6 @@
  * 公共方法集合
  * Created by CLAKE on 2016/3/18.
  */
-import CKDom from "CKDom.es6";
 
 //HOOK 为string 对像加入trim方法
 if (!String.prototype.trim) {

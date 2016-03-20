@@ -191,4 +191,42 @@ CKDom.prototype.xy = function() {
     return rect.length > 1 ? rect : rect[0];
 };
 
+/**
+ * 得到或是设置DOM节点内容
+ * @returns {*}
+ */
+CKDom.prototype.text = function() {
+    var text = arguments[0] || null;
+    if (text) {
+        return this.each(function(){
+            this.textContent = text;
+        });
+    } else {
+        var txt_con = [];
+        this.each(function(){
+            txt_con.push(this.textContent);
+        });
+        return txt_con.length > 1 ? txt_con : txt_con[0];
+    }
+};
+
+/**
+ * 得到或是设置DOM节点HTML内容
+ * @returns {*}
+ */
+CKDom.prototype.html = function() {
+    var text = arguments[0] || null;
+    if (text) {
+        return this.each(function(){
+            this.innerHTML = text;
+        });
+    } else {
+        var txt_con = [];
+        this.each(function(){
+            txt_con.push(this.innerHTML);
+        });
+        return txt_con.length > 1 ? txt_con : txt_con[0];
+    }
+};
+
 
