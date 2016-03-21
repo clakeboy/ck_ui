@@ -2,7 +2,7 @@
  * 核心类库
  * Created by CLAKE on 2016/3/17.
  */
-define([],function(){
+define(function(){
     //HOOK 为string 对像加入trim方法
     if (!String.prototype.trim) {
         String.prototype.trim = function() {

@@ -15,10 +15,13 @@ module.exports = function(grunt) {
         //    }
         //},
         requirejs: {
-            std: {
+            compile: {
                 options: {
                     baseUrl: "src",
-                    out: "dist/public/<%= pkg.name %>.js"
+                    mainConfigFile: "src/r.config.js",
+                    out: "dist/public/<%= pkg.name %>.js",
+                    name: 'main',
+                    optimize: "uglify"
                 }
             }
         },
@@ -28,7 +31,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.<%= pkg.version.replace(/[\.]/g,"_")%>.min.js': ['<%= requirejs.std.options.out %>']
+                    'dist/public/<%= pkg.name %>.<%= pkg.version.replace(/[\.]/g,"_")%>.min.js': ['<%= requirejs.compile.options.out %>']
                 }
             }
         }

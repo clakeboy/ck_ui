@@ -2,7 +2,7 @@
  * CKDom HTML文档处理对像
  * Created by CLAKE on 2016/3/18.
  */
-define(['./CKCore','./CKUtil'],function(CK){
+define(['core/CKCore','core/CKUtil'],function(CK){
     /**
      * CKDom HTML文档处理对像
      * @param emls Element 对像集合

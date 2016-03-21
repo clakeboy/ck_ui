@@ -2,7 +2,7 @@
  * 公共方法集合
  * Created by CLAKE on 2016/3/18.
  */
-define(['CKCore'],function(CK){
+define(['core/CKCore'],function(CK){
     //浏览器用户代理信息
     var ua = window.navigator.userAgent.toLowerCase();
 
