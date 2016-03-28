@@ -6,7 +6,6 @@ define([
     'core/CKUtil',
     'core/CKDom'
 ], function(CK){
-    console.log('main');
     return (window.CK = CK);
 });
 require(['main']);

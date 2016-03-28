@@ -28,7 +28,7 @@ define(['core/CKCore'],function(CK){
          * 得到文档对像
          * @returns {Element|HTMLElement}
          */
-        getDocument:function () {
+        GetDocument:function () {
             return document.documentElement || document.body;
         },
         /**
@@ -36,7 +36,7 @@ define(['core/CKCore'],function(CK){
          * @param callback
          * @returns {Function}
          */
-        createEvent:function(callback) {
+        CreateEvent:function(callback) {
             return function(evt) {
                 /**
                  * @param evt {Event}
@@ -87,7 +87,7 @@ define(['core/CKCore'],function(CK){
          * 得到一个DOM对像在屏中的坐标
          * @returns {{}}
          */
-        getElementXY:function() {
+        GetElementXY:function() {
             var parent = arguments[1]||undefined;
             var t = {
                 'top': e.offsetTop,
@@ -110,6 +110,70 @@ define(['core/CKCore'],function(CK){
 
             scrollTop = topScroll = scrollLeft = leftScroll = parent = null;
             return t;
+        },
+        /**
+         * 自动补齐字符长度
+         * @param {String} text 要补齐长度的字符串
+         * @param {Number} length 补齐的长度
+         * @param {String} padstring 填补的字符
+         * @option {String} left|right 是左补齐还是右补齐
+         * @returns {string}
+         */
+        StrPad:function(text, length, padstring) {
+            var type = arguments[3] || "left";
+            text += '';
+            padstring += '';
+            var padtext = null;
+            if(text.length < length) {
+                padtext = padstring;
+
+                while(padtext.length < (length - text.length)) {
+                    padtext += padstring;
+                }
+                if (type == "left") {
+                    text = padtext.substr(0, (length - text.length)) + text;
+                } else if (type == "right") {
+                    text = text + padtext.substr(0, (length - text.length));
+                }
+
+            }
+            padtext = null;
+            return text;
+        },
+        /**
+         * 得到指字长度的随机字符串
+         * @param {Number} str_length 随机长度
+         * @option {String} 随机的字符串字符
+         * @returns {string}
+         */
+        RandomStr:function(str_length) {
+            var def_chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var chars = arguments[1] || def_chars;
+            var num;
+            var out_str = "";
+            for (var i=0;i<str_length;i++) {
+                num = Math.round(Math.random()*chars.length);
+                out_str += chars.substring(num, num+1);
+            }
+            chars = num = null;
+            return out_str;
+        },
+        /**
+         * 得到FLASH DOM对像
+         * @param movieName
+         * @returns {*}
+         * @constructor
+         */
+        GetFlashMovieObject:function(movieName) {
+            if (window.document[movieName]) {
+                return window.document[movieName];
+            }
+            if (navigator.appName.indexOf("Microsoft")==-1) {
+                if (document.embeds && document.embeds[movieName])
+                    return document.embeds[movieName];
+            } else {
+                return document.getElementById(movieName);
+            }
         }
     };
     ua = null;

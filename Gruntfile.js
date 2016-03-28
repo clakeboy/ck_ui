@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/public/<%= pkg.name %>.<%= pkg.version.replace(/[\.]/g,"_")%>.min.js': ['<%= requirejs.compile.options.out %>']
+                    'dist/public/<%= pkg.name %>-<%= pkg.version.replace(/[\.]/g,"-")%>.min.js': ['<%= requirejs.compile.options.out %>']
                 }
             }
         }

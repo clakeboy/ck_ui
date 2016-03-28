@@ -92,9 +92,9 @@ define(['core/CKCore','core/CKUtil'],function(CK){
     CKDom.prototype.on = function(evt_name,func) {
         return this.each(function(){
             if (this.addEventListener) {
-                this.addEventListener(evt_name,CK.util.createEvent(func),false);
+                this.addEventListener(evt_name,CK.util.CreateEvent(func),false);
             } else {
-                this.attachEvent("on"+evt_name,CK.util.createEvent(func));
+                this.attachEvent("on"+evt_name,CK.util.CreateEvent(func));
             }
         });
     };
@@ -186,7 +186,7 @@ define(['core/CKCore','core/CKUtil'],function(CK){
         var rect = [];
         var parent = arguments[1] || null;
         this.each(function(){
-            rect.push(CK.util.getElementXY(this,parent));
+            rect.push(CK.util.GetElementXY(this, parent));
         });
         return rect.length > 1 ? rect : rect[0];
     };
@@ -238,7 +238,7 @@ define(['core/CKCore','core/CKUtil'],function(CK){
     CK.$ = function(query) {
         var emls = null;
         if (typeof query == 'string') {
-            var doc = arguments[1] || CK.util.getDocument();
+            var doc = arguments[1] || CK.util.GetDocument();
             emls = doc.querySelectorAll(query);
         } else {
             emls = [query];
