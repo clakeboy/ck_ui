@@ -64,22 +64,18 @@ define(['core/CKCore','core/CKUtil'],function(CK){
      */
     CKDom.prototype.attr = function(key) {
         var val = arguments[1] || null;
-        var vals=[],is_set=false;
+        var is_set=false;
         if (val !== null) {
             val = val.toString();
             is_set = true;
         }
-        this.each(function(){
-            if (is_set) {
-                this.setAttribute(key,val);
-            } else {
-                vals.push(this.getAttribute(key));
-            }
-        });
         if (is_set) {
+            this.each(function(){
+                this.setAttribute(key,val);
+            });
             return this;
         } else {
-            return vals.length > 1 ? vals : vals[0];
+            return this.emls[0]?this.emls[0].getAttribute(key):null;
         }
     };
 
@@ -166,12 +162,8 @@ define(['core/CKCore','core/CKUtil'],function(CK){
     CKDom.prototype.getClass = function() {
         var elm = arguments[0] || null;
         if (elm === null) {
-            var class_vals = [];
-            this.each(function(){
-                var s = this.className;
-                class_vals.push(s.split(" "));
-            });
-            return class_vals.length > 1 ? class_vals : class_vals[0];
+            var class_name = this.emls[0] ? this.emls[0].className : '';
+            return class_name.split(' ');
         } else {
             var s = elm.className;
             return s ? s.split(' ') : false;
@@ -182,13 +174,11 @@ define(['core/CKCore','core/CKUtil'],function(CK){
      * 得到DOM集合的XY坐标
      * @returns {Array}
      */
-    CKDom.prototype.xy = function() {
-        var rect = [];
+    CKDom.prototype.points = function() {
+        var rect = null;
         var parent = arguments[1] || null;
-        this.each(function(){
-            rect.push(CK.util.GetElementXY(this, parent));
-        });
-        return rect.length > 1 ? rect : rect[0];
+        rect = CK.util.GetElementXY(this.emls[0], parent);
+        return rect;
     };
 
     /**
@@ -199,14 +189,11 @@ define(['core/CKCore','core/CKUtil'],function(CK){
         var text = arguments[0] || null;
         if (text) {
             return this.each(function(){
+                console.log(this);
                 this.textContent = text;
             });
         } else {
-            var txt_con = [];
-            this.each(function(){
-                txt_con.push(this.textContent);
-            });
-            return txt_con.length > 1 ? txt_con : txt_con[0];
+            return this.emls[0] ? this.emls[0].textContent : null;
         }
     };
 
@@ -221,11 +208,7 @@ define(['core/CKCore','core/CKUtil'],function(CK){
                 this.innerHTML = text;
             });
         } else {
-            var txt_con = [];
-            this.each(function(){
-                txt_con.push(this.innerHTML);
-            });
-            return txt_con.length > 1 ? txt_con : txt_con[0];
+            return this.emls[0] ? this.emls[0].innerHTML : null;
         }
     };
 
@@ -246,6 +229,8 @@ define(['core/CKCore','core/CKUtil'],function(CK){
 
         return new CKDom(emls);
     };
+
+    CK.CKDom = CKDom;
 
     return CK;
 });

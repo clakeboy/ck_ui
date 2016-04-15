@@ -35,9 +35,9 @@ define(function(){
      * @param func
      */
     CK.each = function(emls,func) {
-        if (emls.constructor != Array) return;
+        if (emls.constructor != Array && emls.constructor != NodeList) return;
         var i,flag;
-        for (i=0;i++;i<emls.length) {
+        for (i=0;i<emls.length;i++) {
             flag = func.call(emls[i],i);
             if (flag === false) break;
         }

@@ -2,9 +2,9 @@
  * Created by CLAKE on 2016/3/17.
  */
 module.exports = function(grunt) {
-
+    var pkg = grunt.file.readJSON('package.json');
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: pkg,
         //concat: {
         //    options: {
         //        separator: ';'
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                     mainConfigFile: "src/r.config.js",
                     out: "dist/public/<%= pkg.name %>.js",
                     name: 'main',
-                    optimize: "uglify"
+                    optimize: pkg.debug ? "none" : "uglify"
                 }
             }
         },

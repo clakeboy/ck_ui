@@ -87,7 +87,7 @@ define(['core/CKCore'],function(CK){
          * 得到一个DOM对像在屏中的坐标
          * @returns {{}}
          */
-        GetElementXY:function() {
+        GetElementXY:function(e) {
             var parent = arguments[1]||undefined;
             var t = {
                 'top': e.offsetTop,

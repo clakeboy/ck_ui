@@ -9,6 +9,12 @@ define(['core/CKCore','core/CKUtil','core/CKDom'], function(CK){
      */
     function CKComponent(cfg) {
         this._cfg = cfg;
-        
     }
+
+
+    CKComponent.prototype.addChild = function(child) {
+
+    };
+
+    return CKComponent;
 });
